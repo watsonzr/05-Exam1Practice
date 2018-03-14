@@ -37,7 +37,7 @@ def main():
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # ------------------------------------------------------------------
@@ -98,7 +98,7 @@ def run_test_problem3a():
     window3.close_on_mouse_click()
 
     # ------------------------------------------------------------------
-    # TO DO: 2 (continued).
+    # DONE: 2 (continued).
     # Below this comment (or integrated with one of the above tests,
     # your choice), add 1 more test case of your own choosing.
     # ------------------------------------------------------------------
@@ -108,8 +108,8 @@ def run_test_problem3a():
     window4 = rg.RoseWindow(400, 250, title)
 
     # Test 5 (it is on window 4):
-    point = rg.Point(20, 50)
-    expected = None
+    point = rg.Point(10, 30)
+    expected = 140
     answer = problem3a(window4, point, 14)
     print()
     print('Test 5 expected:', expected)
@@ -151,7 +151,7 @@ def problem3a(window, point, n):
         :type n:      int
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -159,6 +159,20 @@ def problem3a(window, point, n):
     #    DIFFICULTY:      7 or 8
     #    TIME ESTIMATE:   20 to 35 minutes.
     # ------------------------------------------------------------------
+
+    total = 0
+    for i in range(n):
+        point2 = rg.Point(point.x, point.y + 50)
+        line = rg.Line(point, point2)
+        line.thickness = 1 + (2 * i)
+        if line.thickness > 14:
+            line.thickness = 13
+        line.attach_to(window)
+        window.render(1)
+        point.x = point.x + 20
+        point.y = point.y + 10
+        total = total + line.thickness
+    return total
 
 
 def run_test_problem3b():
